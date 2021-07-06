@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./components/Forms/Login";
+import React from "react";
+import Registration from "./components/Forms/Registration";
+import Test from "./components/Quiz/MainQuiz";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function App() {
+
+export default function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Switch>
+          <Route path="/login" exact>
+            <Login  />
+          </Route>
+          <Route path="/register" exact>
+            <Registration />
+          </Route>
+          <Route path="/test" exact>
+            <Test  />
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
-
-export default App;
