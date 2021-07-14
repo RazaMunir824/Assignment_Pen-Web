@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://question:question@cluster0.yjcvo.mongodb.net/question?retryWrites=true&w=majority",
+    "jwtSecret": "Sl_MySecret"
+}

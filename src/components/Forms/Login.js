@@ -11,12 +11,13 @@ function Login({ logo }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token")
+    //const token = localStorage.getItem("token")
+   // console.log(token)
     fetch("http://localhost:5000/api/login", {
       method: "post",
       headers: { 
-        "content-type": "application/json",
-        Authorization: `Bearer ${token}`,
+        "content-type": "application/json"
+      
       },
       body: JSON.stringify({
         email: email,
@@ -26,9 +27,9 @@ function Login({ logo }) {
       .then((res) => res.json())
       .then((user) => {
         const {data , token} = user
-        localStorage.setItem("token", `Bearer ${token}`);
+        console.log(token)
+        localStorage.setItem("token", `${token}`);
         if (data.user_role === "Student") {
-          
           history.push("/test");
         }
        

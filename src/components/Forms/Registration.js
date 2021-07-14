@@ -20,7 +20,7 @@ function Registration({ logo }) {
         method: "post",
         headers: {
           "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
+          token: `Bearer ${token}`,
          
         },        
         body: JSON.stringify({
@@ -160,16 +160,7 @@ function Registration({ logo }) {
               />
             </div>
           </form>
-          <div className="form-text">
-            Have Account?{" "}
-            <span>
-              <a href="/login">Login</a>
-            </span>
-            <br />
-            <span>
-              <a href="/register-hospital">Register as a hospital.</a>
-            </span>
-          </div>
+          
         </main>
       </div>
     </>
