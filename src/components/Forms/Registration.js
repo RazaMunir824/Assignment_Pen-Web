@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 
-function Registration({ logo }) {
+function Registration({ logo , checkAuth }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,13 +15,16 @@ function Registration({ logo }) {
     e.preventDefault();
 
     if (password === confirmPassword) {
-      let token = localStorage.getItem("token");
+      const aa = {
+          username: name,
+          email: email,
+          password: password,
+          user_role:"Student"
+      }
       fetch("http://localhost:5000/api/register", {
         method: "post",
         headers: {
           "content-type": "application/json",
-          token: `Bearer ${token}`,
-         
         },        
         body: JSON.stringify({
           username: name,
@@ -32,12 +35,15 @@ function Registration({ logo }) {
       })
         .then((res) => res.json())
         .then((user) => {
-          if (user) {
+          console.log('user',user)
+          if (!user) {
+            console.log('err.message')
+          }else{
+            checkAuth(true)
             console.log(user)
             history.push("/test");
           }
         })
-        .catch((err) => console.log(err.message));
     } else {
       alert("Password and confirm password doesn't match");
     }

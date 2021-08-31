@@ -11,7 +11,7 @@ class MainQuizz extends React.Component {
     score: 0,
     disabled: true,
     isEnd: false,
-    seconds: 3,
+    seconds: 10,
     token:''
   };
 
@@ -38,7 +38,7 @@ class MainQuizz extends React.Component {
       }
       else {
         if (!(this.state.currentQuestion === quizData.length - 1)) {
-          this.setState({ seconds: 3 })
+          this.setState({ seconds: 10 })
           this.nextQuestionHandler();
         } else {
           this.finishHandler()
@@ -61,7 +61,7 @@ class MainQuizz extends React.Component {
       currentQuestion: this.state.currentQuestion + 1
     });
     console.log(this.state.currentQuestion);
-    //this.aa()
+    this.setState({ seconds: 10 })
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -104,12 +104,11 @@ class MainQuizz extends React.Component {
     console.log(e);
   }
   //const {email} = tokenn;
-  console.log(token)
+  console.log('emaill',decoded)
     fetch("http://localhost:5000/api/answer/submit", {
         method: "post",
         headers: {
           "content-type": "application/json",
-          token: `${token}`,
         },        
         body: JSON.stringify({
           email:decoded.email,
@@ -119,13 +118,17 @@ class MainQuizz extends React.Component {
         .then((res) => res.json())
         .then((user) => {
           if (user){
-           console.log("added")
+           console.log("added" ,this.state.score)
+           localStorage.removeItem("token");
+           this.props.checkAuth(false)
           }
         })
         .catch((err) => console.log(err.message));
-    
+        
 
-    localStorage.removeItem("token");
+    //localStorage.removeItem("token");
+    //let token = localStorage.getItem("token");
+    //console.log('Null',localStorage.getItem("token"))
    
   };
  

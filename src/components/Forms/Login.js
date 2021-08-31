@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import "./forms.css";
-function Login({ logo }) {
+function Login({ logo , checkAuth }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const history = useHistory();
@@ -25,15 +25,14 @@ function Login({ logo }) {
       }),
     })
       .then((res) => res.json())
-      .then((user) => {
-        const {data , token} = user
+      .then((userr) => {
+        const {user , token} = userr
+        localStorage.setItem('token',`${token}`);
         console.log(token)
-        localStorage.setItem("token", `${token}`);
-        if (data.user_role === "Student") {
+        if (user) {
+          checkAuth(true)
           history.push("/test");
         }
-       
-        
       })
       .catch((err) => console.log(err));
   };

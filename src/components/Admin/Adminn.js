@@ -74,7 +74,7 @@ export default function CustomizedTables() {
               </StyledTableCell> */}
               <StyledTableCell align="left">{row.email}</StyledTableCell>
               <StyledTableCell align="right">{row.result}</StyledTableCell>
-              <StyledTableCell align="right">{row.created_at}</StyledTableCell>
+              <StyledTableCell align="right">{row.testtime}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

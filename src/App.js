@@ -7,27 +7,33 @@ import { BrowserRouter as Router, Switch, Route , Redirect } from "react-router-
 
 
 export default function App() {
-  const [check, setcheck] = useState({
-    loginToken: localStorage.getItem("token")
-      ? localStorage.getItem("token")
-      : null
-  });
+  //const [check, setcheck] = useState((localStorage.getItem("token")) ? true : false);
+  const [auth,setAuth] = useState(false)
+
+  const checkAuth = (e) => {
+    setAuth(e)
+  }
   
+  // useEffect(() => {
+  //   let token = localStorage.getItem("token")
+  //   token && console.log('t', token)
+  // },[check])
+
   return (
     <>
     <Router>
         <Switch>
           <Route  exact  path="/test"
             render={() => {
-                      if (check.loginToken) return <Test />;
+                      if (auth) return <Test checkAuth={checkAuth} />;
                       else return <Redirect to="/login" />;
                     }}
           ></Route> 
           <Route path="/login" exact>
-              <Login  />
+              <Login checkAuth={checkAuth}  />
           </Route>
           <Route path="/register" exact>
-              <Registration />
+              <Registration checkAuth={checkAuth} />
           </Route>
           <Route path="/admin" exact>
               <Admin />
