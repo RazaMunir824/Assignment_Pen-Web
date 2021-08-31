@@ -7,17 +7,13 @@ import { BrowserRouter as Router, Switch, Route , Redirect } from "react-router-
 
 
 export default function App() {
-  //const [check, setcheck] = useState((localStorage.getItem("token")) ? true : false);
   const [auth,setAuth] = useState(false)
 
   const checkAuth = (e) => {
     setAuth(e)
   }
   
-  // useEffect(() => {
-  //   let token = localStorage.getItem("token")
-  //   token && console.log('t', token)
-  // },[check])
+
 
   return (
     <>
