@@ -8,13 +8,10 @@ import { BrowserRouter as Router, Switch, Route , Redirect } from "react-router-
 
 export default function App() {
   const [auth,setAuth] = useState(false)
-
   const checkAuth = (e) => {
     setAuth(e)
   }
   
-
-
   return (
     <>
     <Router>
